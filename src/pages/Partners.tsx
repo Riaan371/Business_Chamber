@@ -42,10 +42,15 @@ export default function Partners() {
   })
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-navy mb-2">Our Partners</h1>
-      <p className="text-gray-700 mb-8">Browse the ethical, vetted businesses in our chamber network.</p>
+    <div>
+      <section className="bg-gradient-to-br from-navy to-navy-light text-white">
+        <div className="max-w-6xl mx-auto px-4 py-16">
+          <h1 className="text-4xl font-extrabold mb-2">Our Partners</h1>
+          <p className="text-white/90">Browse the ethical, vetted businesses in our chamber network.</p>
+        </div>
+      </section>
 
+      <div className="max-w-6xl mx-auto px-4 py-16">
       <div className="flex flex-wrap gap-4 mb-8">
         <input
           type="text"
@@ -72,7 +77,7 @@ export default function Partners() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filtered.map((partner) => (
-          <div key={partner.id} className="bg-sand rounded-lg p-6 flex flex-col items-center text-center shadow-sm">
+          <div key={partner.id} className="card-hover bg-white rounded-xl p-6 flex flex-col items-center text-center shadow-sm border border-gray-100 border-t-4 border-t-teal">
             <img
               src={partner.logo_url || '/logo.jpeg'}
               alt={partner.name}
@@ -92,6 +97,7 @@ export default function Partners() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   )
