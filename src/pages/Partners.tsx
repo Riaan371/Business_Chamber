@@ -88,7 +88,7 @@ export default function Partners() {
             {partner.description && <p className="text-sm text-gray-700 mb-3">{partner.description}</p>}
             <div className="text-sm space-y-1">
               {partner.website && (
-                <p><a href={partner.website} target="_blank" rel="noreferrer" className="text-teal hover:underline">Visit Website</a></p>
+                <p><a href={/^https?:\/\//i.test(partner.website) ? partner.website : `https://${partner.website}`} target="_blank" rel="noreferrer" className="text-teal hover:underline">Visit Website</a></p>
               )}
               {partner.phone && <p className="text-gray-600">{partner.phone}</p>}
               {partner.email && (
