@@ -1,5 +1,29 @@
+import { useState } from 'react'
+
 export default function Signup() {
-  const formUrl = import.meta.env.VITE_SIGNUP_FORM_URL as string | undefined
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStatus('submitting')
+    const form = e.currentTarget
+    const data = new FormData(form)
+    try {
+      const res = await fetch('https://formspree.io/f/mljrenoy', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      })
+      if (res.ok) {
+        setStatus('success')
+        form.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
     <div>
@@ -10,33 +34,66 @@ export default function Signup() {
         </div>
       </section>
 
-      <div className="max-w-2xl mx-auto px-4 py-16 text-center">
-        <p className="text-gray-700 mb-8">
-          Thanks for your interest in joining the Langebaan Business Chamber! Please complete the
-          membership application form. Our team will review your application and be in
-          touch to confirm your payment details.
+      <div className="max-w-2xl mx-auto px-4 py-16">
+        <p className="text-gray-700 mb-8 text-center">
+          Thanks for your interest in joining the Langebaan Business Chamber! Complete the form
+          below and our team will be in touch to confirm your membership and payment details.
         </p>
 
-        {formUrl ? (
-          <a
-            href={formUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-block bg-gold text-navy px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:opacity-90 transition-opacity"
-          >
-            Open Membership Application Form
-          </a>
-        ) : (
-          <div className="bg-sand rounded-xl p-8 text-gray-700">
-            <p>
-              The membership application form link has not been configured yet. Please set
-              <code className="mx-1 bg-white px-1 rounded">VITE_SIGNUP_FORM_URL</code>
-              to your Google Form link, or contact us directly at{' '}
-              <a href="mailto:info@langebaanbusinesschamber.co.za" className="text-teal hover:underline">
-                info@langebaanbusinesschamber.co.za
-              </a>.
-            </p>
+        {status === 'success' ? (
+          <div className="bg-teal/10 border border-teal rounded-xl p-8 text-center">
+            <p className="text-2xl font-bold text-navy mb-2">Application Submitted!</p>
+            <p className="text-gray-700">Thank you for applying. We'll be in touch shortly to confirm your membership.</p>
           </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg border-t-8 border-gold p-8 space-y-5">
+            <div>
+              <label className="block text-sm font-semibold text-navy mb-1">Business Name <span className="text-red-500">*</span></label>
+              <input name="Business Name" required className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-navy mb-1">Contact Person <span className="text-red-500">*</span></label>
+              <input name="Contact Person" required className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal" />
+            </div>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div>
+                <label className="block text-sm font-semibold text-navy mb-1">Phone Number <span className="text-red-500">*</span></label>
+                <input name="Phone Number" type="tel" required className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal" />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-navy mb-1">Email Address <span className="text-red-500">*</span></label>
+                <input name="email" type="email" required className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal" />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-navy mb-1">Website</label>
+              <input name="Website" type="url" placeholder="https://www.example.com" className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-navy mb-1">Business Category</label>
+              <input name="Category" placeholder="e.g. Retail, Hospitality, Professional Services" className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal" />
+            </div>
+            <div>
+              <label className="block text-sm font-semibold text-navy mb-1">Brief Description of Your Business</label>
+              <textarea name="Description" rows={3} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-teal resize-none" />
+            </div>
+
+            {status === 'error' && (
+              <p className="text-red-600 text-sm">Something went wrong. Please try again or email us directly.</p>
+            )}
+
+            <button
+              type="submit"
+              disabled={status === 'submitting'}
+              className="w-full bg-gold text-navy font-bold py-3 rounded-full text-lg shadow hover:opacity-90 transition-opacity disabled:opacity-60"
+            >
+              {status === 'submitting' ? 'Submitting...' : 'Submit Application'}
+            </button>
+
+            <p className="text-xs text-gray-500 text-center">
+              Membership is R120/month. Payment details will be confirmed after review.
+            </p>
+          </form>
         )}
       </div>
     </div>
