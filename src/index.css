@@ -34,59 +34,8 @@ h1, h2, h3, h4 {
   box-shadow: 0 12px 24px -10px rgba(27, 76, 140, 0.25);
 }
 
-/* Lime-washed wall texture — layered soft blotches over a warm white */
-.kalkmuur {
-  background-color: #fcf8f0;
-  background-image:
-    radial-gradient(ellipse 60% 40% at 12% 18%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 60%),
-    radial-gradient(ellipse 50% 45% at 78% 28%, rgba(238,230,216,0.75) 0%, rgba(238,230,216,0) 62%),
-    radial-gradient(ellipse 70% 35% at 42% 72%, rgba(232,222,204,0.7) 0%, rgba(232,222,204,0) 65%),
-    radial-gradient(ellipse 45% 50% at 88% 82%, rgba(244,238,226,0.8) 0%, rgba(244,238,226,0) 60%),
-    linear-gradient(135deg, #fdfaf3 0%, #f2ebdd 55%, #ebe3d3 100%);
-}
-
-/* Brush-stroke grain overlay for the wall — irregular, low-contrast */
-.kalkmuur-grain::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.55;
-  background-image:
-    repeating-linear-gradient(97deg,
-      rgba(255,255,255,0.30) 0px, rgba(255,255,255,0) 17px,
-      rgba(184,172,150,0.05) 41px, rgba(255,255,255,0) 78px,
-      rgba(255,255,255,0.22) 103px, rgba(255,255,255,0) 149px),
-    repeating-linear-gradient(83deg,
-      rgba(255,255,255,0) 0px, rgba(184,172,150,0.04) 59px,
-      rgba(255,255,255,0) 118px, rgba(255,255,255,0.18) 171px,
-      rgba(255,255,255,0) 233px),
-    repeating-linear-gradient(4deg,
-      rgba(255,255,255,0) 0px, rgba(190,178,158,0.035) 89px,
-      rgba(255,255,255,0) 197px);
-}
-
-/* Cobalt skirting band with a chipped lime edge */
-.skirting {
-  background: #1b4c8c;
-  background-image: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(0,0,0,0) 45%, rgba(0,0,0,0.26) 100%);
-}
-.skirting::before {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 6px;
-  background:
-    repeating-linear-gradient(90deg,
-      #ebe3d3 0px, #ebe3d3 5px,
-      transparent 5px, transparent 14px,
-      #ebe3d3 14px, #ebe3d3 17px,
-      transparent 17px, transparent 39px,
-      #ebe3d3 39px, #ebe3d3 46px,
-      transparent 46px, transparent 61px,
-      #ebe3d3 61px, #ebe3d3 64px,
-      transparent 64px, transparent 97px);
-  opacity: 0.9;
+/* The lime-washed wall and lagoon shallows are canvas-drawn — see
+   src/components/KalkmuurBg.tsx. This is the flat fallback colour. */
+.kalkmuur-fallback {
+  background-color: #f5eee1;
 }

@@ -15,6 +15,7 @@ export default function About() {
       <PageHero
         title="About Us"
         subtitle="The Langebaan Business Chamber unites ethical businesses across the West Coast region, promoting growth, community and sustainability. We connect members through networking, referrals, training and collaboration, underpinned by a strong commitment to integrity, fairness and accountability."
+        seed={3003}
       />
 
       <div className="max-w-6xl mx-auto px-4 py-14 sm:py-16">

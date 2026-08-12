@@ -3,7 +3,7 @@ import PageHero from '../components/PageHero'
 export default function Contact() {
   return (
     <div>
-      <PageHero title="Contact Us" subtitle="We'd love to hear from you" />
+      <PageHero title="Contact Us" subtitle="We'd love to hear from you" seed={6006} />
 
       <div className="max-w-6xl mx-auto px-4 py-14 sm:py-16">
         <div className="bg-white rounded-2xl p-6 sm:p-8 max-w-xl space-y-4 text-gray-700 shadow-lg border-t-8 border-cobalt">

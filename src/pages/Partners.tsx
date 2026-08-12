@@ -47,6 +47,7 @@ export default function Partners() {
       <PageHero
         title="Our Partners"
         subtitle="Browse the ethical, vetted businesses in our chamber network."
+        seed={4004}
       />
 
       <div className="max-w-6xl mx-auto px-4 py-14 sm:py-16">

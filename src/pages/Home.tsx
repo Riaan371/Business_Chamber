@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import KalkmuurBg from '../components/KalkmuurBg'
 
 const values = [
   { title: 'Ethical Listings', text: 'A directory of vetted businesses that follow our code of conduct.' },
@@ -17,9 +18,10 @@ const benefits = [
 export default function Home() {
   return (
     <div>
-      {/* ── Hero: lime-washed wall with cobalt skirting ── */}
-      <section className="relative kalkmuur kalkmuur-grain overflow-hidden">
-        <div className="relative max-w-6xl mx-auto px-4 py-16 sm:py-24 text-center">
+      {/* ── Hero: lime-washed wall over the Langebaan shallows ── */}
+      <section className="relative overflow-hidden">
+        <KalkmuurBg water={0.26} seed={1001} />
+        <div className="relative max-w-6xl mx-auto px-4 pt-16 pb-32 sm:pt-24 sm:pb-44 text-center">
           <img
             src="/logo.jpeg"
             alt="Langebaan Business Chamber"
@@ -47,7 +49,6 @@ export default function Home() {
             </Link>
           </div>
         </div>
-        <div className="relative skirting h-7 sm:h-10" />
       </section>
 
       {/* ── What We Stand For ── */}
@@ -68,8 +69,9 @@ export default function Home() {
       </section>
 
       {/* ── Membership ── */}
-      <section className="relative kalkmuur kalkmuur-grain overflow-hidden">
-        <div className="relative max-w-6xl mx-auto px-4 py-16 sm:py-20">
+      <section className="relative overflow-hidden">
+        <KalkmuurBg water={0.18} seed={2002} />
+        <div className="relative max-w-6xl mx-auto px-4 pt-16 pb-28 sm:pt-20 sm:pb-36">
           <h2 className="text-2xl sm:text-3xl font-bold text-navy text-center mb-2">Membership</h2>
           <p className="text-navy/60 text-center mb-10 sm:mb-12">One simple plan for every business</p>
           <div className="max-w-md mx-auto">
@@ -96,7 +98,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="relative skirting h-7 sm:h-10" />
       </section>
     </div>
   )

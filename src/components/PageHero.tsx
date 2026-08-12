@@ -1,31 +1,38 @@
+import KalkmuurBg from './KalkmuurBg'
+
 type Props = {
   title: string
   subtitle?: string
   children?: React.ReactNode
   center?: boolean
+  seed?: number
 }
 
 /**
- * Paternoster Kalkmuur page header — lime-washed wall with the cobalt
- * skirting band along the bottom.
+ * Paternoster Kalkmuur page header — lime-washed wall with the
+ * Langebaan lagoon shallows along the bottom.
  */
-export default function PageHero({ title, subtitle, children, center = false }: Props) {
+export default function PageHero({ title, subtitle, children, center = false, seed = 1001 }: Props) {
   return (
-    <section className="relative kalkmuur kalkmuur-grain overflow-hidden">
+    <section className="relative overflow-hidden min-h-[280px] sm:min-h-[340px] flex flex-col">
+      <KalkmuurBg water={0.3} seed={seed} />
       <div
-        className={`relative max-w-6xl mx-auto px-4 pt-14 pb-20 sm:pt-16 sm:pb-24 ${
+        className={`relative flex-1 max-w-6xl w-full mx-auto px-4 pt-14 pb-24 sm:pt-16 sm:pb-32 ${
           center ? 'text-center' : ''
         }`}
       >
         <h1 className="text-3xl sm:text-4xl font-extrabold text-navy mb-3 tracking-tight">{title}</h1>
         {subtitle && (
-          <p className={`text-base sm:text-lg text-navy/65 leading-relaxed ${center ? 'max-w-2xl mx-auto' : 'max-w-2xl'}`}>
+          <p
+            className={`text-base sm:text-lg text-navy/65 leading-relaxed ${
+              center ? 'max-w-2xl mx-auto' : 'max-w-2xl'
+            }`}
+          >
             {subtitle}
           </p>
         )}
         {children}
       </div>
-      <div className="relative skirting h-6 sm:h-8" />
     </section>
   )
 }

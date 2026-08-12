@@ -36,6 +36,7 @@ export default function Signup() {
         title="Become a Member"
         subtitle="Join the Langebaan Business Chamber for R120/month"
         center
+        seed={5005}
       />
 
       <div className="max-w-2xl mx-auto px-4 py-14 sm:py-16">
