@@ -23,10 +23,14 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="bg-navy/95 backdrop-blur text-white sticky top-0 z-50 shadow-lg border-b border-white/10">
+    <header className="bg-cobalt text-white sticky top-0 z-50 shadow-lg">
       <div className="max-w-6xl mx-auto px-4 flex items-center justify-between h-20">
         <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-          <img src="/logo.jpeg" alt="Langebaan Business Chamber" className="h-14 w-14 rounded-full object-cover ring-2 ring-gold/60" />
+          <img
+            src="/logo.jpeg"
+            alt="Langebaan Business Chamber"
+            className="h-14 w-14 rounded-full object-cover ring-2 ring-white/45"
+          />
           <span className="font-semibold text-lg leading-tight hidden sm:block tracking-wide">
             Langebaan<br />Business Chamber
           </span>
@@ -57,7 +61,7 @@ export default function Navbar() {
       </div>
 
       {open && (
-        <nav className="md:hidden bg-navy border-t border-white/10 px-4 py-3 space-y-1">
+        <nav className="md:hidden bg-cobalt-dark border-t border-white/10 px-4 py-3 space-y-1">
           {links.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.end} className={mobileLinkClass} onClick={() => setOpen(false)}>
               {link.label}
